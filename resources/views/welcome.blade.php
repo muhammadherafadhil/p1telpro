@@ -145,11 +145,9 @@
                 @if(Auth::user() && Auth::user()->role === 'admin')
                     <a href="{{ route('register.form') }}" class="btn btn-primary d-block">Register User</a>
                 @endif
-                @if(Auth::user() && Auth::user()->role === 'user')
                 <!-- Tombol ke Halaman Edit Profil -->
                 <a href="{{ route('data-pegawai.edit', ['nik' => Auth::user()->nik]) }}" class="btn btn-primary d-block">Edit Profil</a>
                 <a href="{{ route('data-pegawai.index') }}" class="btn btn-secondary d-block">Lihat Data Pegawai</a>
-                @endif
             </div>
         </div>
 
