@@ -9,204 +9,141 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('https://static.republika.co.id/uploads/images/inpicture_slide/rancangan-dari-gedung-yang-akan-dibangun-di-1-queensbridge-_170210090232-546.jpg');
+            background-image: url('https://www.androidponsel.com/wp-content/uploads/2020/05/The-Telkom-Hub-e1598512789783.jpg');
             background-size: cover;
-            background-position: center center;
+            background-position: center;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-family: 'Arial', sans-serif;
         }
 
         .login-card {
             width: 100%;
-            max-width: 450px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            padding: 40px 35px;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
-            transition: all 0.3s ease;
         }
 
-        .login-card:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            transform: scale(1.05);
-        }
-
-        .logo {
-            display: block;
-            margin: 0 auto 30px;
-            max-width: 100px;
+        .login-card .logo {
+            margin: 0 auto 20px;
+            max-width: 80px;
         }
 
         .login-card h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: bold;
             color: #333;
-            margin-bottom: 25px;
-        }
-
-        .form-label {
-            font-weight: 600;
-            color: #555;
-            text-align: left;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .form-control {
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ced4da;
             font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
 
         .btn-primary {
-            background-color: #007bff;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 20px;
-            color: #fff;
+            font-size: 1rem;
             font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 25px;
             width: 100%;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .alert-danger {
             font-size: 0.9rem;
-            color: #f44336;
+            color: #d9534f;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 10px;
             margin-bottom: 20px;
             text-align: left;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: #f8d7da;
         }
 
-        .text-muted {
+        .login-card .form-footer {
             font-size: 0.9rem;
-            color: #6c757d;
         }
 
-        .text-muted a {
-            text-decoration: none;
+        .login-card a {
             color: #007bff;
-            font-weight: 600;
+            text-decoration: none;
         }
 
-        .text-muted a:hover {
+        .login-card a:hover {
             text-decoration: underline;
-        }
-
-        .form-container {
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
-        }
-
-        @media (max-width: 576px) {
-            .login-card {
-                padding: 30px 20px;
-            }
-
-            .login-card h1 {
-                font-size: 1.8rem;
-                margin-bottom: 20px;
-            }
-
-            .form-control {
-                padding: 10px;
-                font-size: 0.9rem;
-            }
-
-            .btn-primary {
-                padding: 10px 15px;
-            }
         }
     </style>
 </head>
 
 <body>
-    <div class="form-container">
-        <div class="login-card">
-            <!-- Logo -->
-            <a href="#">
-                <img src="https://product.telkomproperty.co.id/assets/images/logoTelkom.png" alt="Logo" class="logo">
-            </a>
+    <div class="login-card">
+        <!-- Logo -->
+        <a href="#">
+            <img src="https://product.telkomproperty.co.id/assets/images/logoTelkom.png" alt="Logo" class="logo">
+        </a>
 
-            <h1>Login</h1>
+        <h1>Welcome Back</h1>
+        <p class="text-muted">Login to access your account</p>
 
-            <form action="{{ route('login') }}" method="POST" id="loginForm">
-                @csrf
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <!-- NIK Input -->
+            <div class="form-group">
+                <input type="text" 
+                       name="nik" 
+                       placeholder="Enter your NIK" 
+                       class="form-control @error('nik') is-invalid @enderror" 
+                       required>
+                @error('nik')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-                <!-- NIK Input -->
-                <div class="mb-4">
-                    <label for="nik" class="form-label">NIK</label>
-                    <input type="text" class="form-control" name="nik" id="nik" placeholder="Masukkan NIK Anda" required
-                        data-bs-toggle="tooltip" data-bs-placement="top" title="Masukkan NIK Anda" />
-                </div>
+            <!-- Password Input -->
+            <div class="form-group">
+                <input type="password" 
+                       name="password" 
+                       placeholder="Enter your password" 
+                       class="form-control @error('password') is-invalid @enderror" 
+                       required>
+                @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-                <!-- Password Input -->
-                <div class="mb-4">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan Password Anda"
-                        required data-bs-toggle="tooltip" data-bs-placement="top" title="Masukkan Password Anda" />
-                </div>
+            <!-- Error Messages -->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                <p class="mb-0">{{ $error }}</p>
+                @endforeach
+            </div>
+            @endif
 
-                <!-- Error Messages -->
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                    <p class="m-0">{{ $error }}</p>
-                    @endforeach
-                </div>
-                @endif
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
+        <!-- Links -->
+        <div class="form-footer mt-3">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <div class="form-footer mt-2">
+            <span>Don't have an account?</span>
+            <a href="{{ route('register') }}">Sign Up</a>
         </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom JavaScript -->
-    <script>
-        // Initialize Bootstrap Tooltip
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            const nik = document.getElementById('nik').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            // Simple client-side validation
-            if (nik === '' || password === '') {
-                event.preventDefault();
-                alert('Semua field harus diisi!');
-            } else if (!/^\d+$/.test(nik)) {
-                event.preventDefault();
-                alert('NIK harus berupa angka!');
-            }
-        });
-    </script>
 </body>
 
 </html>
